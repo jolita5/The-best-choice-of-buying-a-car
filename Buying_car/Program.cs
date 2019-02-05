@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Buying_car.Factory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,12 @@ namespace Buying_car
     {
         static void Main(string[] args)
         {
+            CarFactory factory = new CarFactory();
+            ICar obj = factory.CreateCarShop(Console.ReadLine());
+            obj.Start();
+
+
+            Console.ReadLine();
         }
     }
 }
