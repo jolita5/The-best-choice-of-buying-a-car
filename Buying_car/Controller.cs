@@ -23,7 +23,8 @@ namespace Buying_car
         public void PrintUsersAnswer()
         {
 
-            Console.WriteLine($"Please, choose one salon to review website: \n 1) BMW - {bmw.Url}, \n 2) AUDI -{audi.Url} , \n 3) TOYOTA - {toyota.Url}");
+            Console.WriteLine($"Please, choose one salon to review website: \n 1) BMW - {bmw.Url}," +
+                $" \n 2) AUDI -{audi.Url} , \n 3) TOYOTA - {toyota.Url}");
 
             int userChoice = Convert.ToInt32(Console.ReadLine());
 
