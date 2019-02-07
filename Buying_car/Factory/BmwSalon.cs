@@ -9,20 +9,16 @@ namespace Buying_car
 {
     public class BmwSalon : ICar
     {
-        public string Url { get; private set; }
+        public string Url { get; private set; } = "https://www.bmw.lt/lt/index.html";
 
 
-
-        public BmwSalon()
-        {
-            Url = "https://www.bmw.lt/lt/index.html";
-        }
 
         public void OnMessageEncoded(object sender, LinkClickedEventArgs e)
         {
             Console.WriteLine(Url);
 
         }
+
         public void RichTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             LaunchWeblink(e.Url);
@@ -30,7 +26,10 @@ namespace Buying_car
 
         public void LaunchWeblink(string url)
         {
-            if (MakeUrlActive(url)) Process.Start(url);
+            if (MakeUrlActive(url))
+            {
+                Process.Start(url);
+            } 
         }
 
         public bool MakeUrlActive(string url)
@@ -44,7 +43,7 @@ namespace Buying_car
 
         public void Start()
         {
-            Console.WriteLine("Bmw Salon was chosen.");
+            Console.WriteLine("\nBmw Salon was chosen.");
         }
     }
 }

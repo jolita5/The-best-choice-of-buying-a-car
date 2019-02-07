@@ -9,12 +9,9 @@ namespace Buying_car
 {
     public class ToyotaSalon:ICar
     {
-        public string Url { get; private set; }
+        public string Url { get; private set; } = "https://www.tokvila.lt/";
 
-        public ToyotaSalon()
-        {
-            Url = "https://www.tokvila.lt/";
-        }
+
 
         public void OnMessageEncoded(object sender, LinkClickedEventArgs e)
         {
@@ -47,7 +44,7 @@ namespace Buying_car
 
         public void Start()
         {
-            Console.WriteLine("Toyota salon was chosen.");
+            Console.WriteLine("\nToyota salon was chosen.");
         }
     }
 }

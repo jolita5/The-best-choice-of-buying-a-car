@@ -12,13 +12,8 @@ namespace Buying_car
     public class AudiSalon : ICar
     {
 
-        public string Url { get; private set; }
+        public string Url { get; private set; } = "http://www.audi.lt/lt/web/lt.html";
 
-
-        public AudiSalon()
-        {
-            Url = "http://www.audi.lt/lt/web/lt.html";
-        }
 
 
         public void OnMessageEncoded(object sender, LinkClickedEventArgs e)
