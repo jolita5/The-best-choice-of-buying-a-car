@@ -30,7 +30,11 @@ namespace Buying_car
 
         public void LaunchWeblink(string url)
         {
-            if (MakeUrlActive(url)) Process.Start(url);
+
+            if (MakeUrlActive(url))
+            {
+                Process.Start(url);
+            }
         }
 
         public bool MakeUrlActive(string url)
