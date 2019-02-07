@@ -10,7 +10,7 @@ namespace Buying_car
     {
         Bmw_Salon,
         Audi_Salon,
-        Auto_Market
+        Toyota_Salon
        
     }
 }

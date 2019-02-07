@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Buying_car.Factory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace Buying_car
         private ToyotaSalon toyota = new ToyotaSalon();
         private Button btn = new Button();
         private bool _isAnswerIncorrect = true;
+        private CarFactory factory = new CarFactory();
+        private ICar _obj;
 
 
 
@@ -58,16 +61,28 @@ namespace Buying_car
                     case 1:
                         btn.MessageEncoded += bmw.RichTextBox_LinkClicked;
                         btn.DoubleClick(bmw.Url);
+
+                        _obj = factory.CreateCarShop(SalonTypes.Bmw_Salon);
+                        _obj.Start();
+
                         isAnswerIncorrect = false;
                         break;
                     case 2:
                         btn.MessageEncoded += audi.RichTextBox_LinkClicked;
                         btn.DoubleClick(audi.Url);
+
+                        _obj = factory.CreateCarShop(SalonTypes.Audi_Salon);
+                        _obj.Start();
+
                         isAnswerIncorrect = false;
                         break;
                     case 3:
                         btn.MessageEncoded += toyota.RichTextBox_LinkClicked;
                         btn.DoubleClick(toyota.Url);
+
+                        _obj = factory.CreateCarShop(SalonTypes.Toyota_Salon);
+                        _obj.Start();
+
                         isAnswerIncorrect = false;
                         break;
                     default:

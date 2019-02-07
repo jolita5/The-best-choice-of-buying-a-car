@@ -18,9 +18,6 @@ namespace Buying_car
             user.PrintUsersAnswer();
 
 
-            //CarFactory factory = new CarFactory();
-            //ICar obj = factory.CreateCarShop(SalonTypes.Audi_Salon);
-            //obj.Start();
 
             //var service = new ShoppingCart(new ShippingAudiSalon ());
             //System.Console.WriteLine(service.AddPrice(new Order() { TotalPrice = 2 }));
