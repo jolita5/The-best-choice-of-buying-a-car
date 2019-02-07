@@ -15,7 +15,7 @@ namespace Buying_car
 
         public void DoubleClick(string url)
         {
-            Console.WriteLine("Website is oppening...");
+            Console.WriteLine("Website is opening...");
             Thread.Sleep(3000);
 
 

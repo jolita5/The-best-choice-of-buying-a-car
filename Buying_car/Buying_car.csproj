@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller.cs" />
     <Compile Include="Factory\Button.cs" />
     <Compile Include="Factory\AudiSalon.cs" />
     <Compile Include="Factory\LinkClickedEventArgs.cs" />
