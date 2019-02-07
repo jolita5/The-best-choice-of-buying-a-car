@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public interface ICar
+    public class ShippingBmwSalon: IShippingCostStrategy
     {
-
-        void LaunchWeblink(string url);
-        bool MakeUrlActive(string url);
-
-        void Start();
+        public decimal Calculate(Order order)
+        {
+            return 30;
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Buying_car.Factory
                 case SalonTypes.Audi_Salon:
                    return new AudiSalon();
                 case SalonTypes.Auto_Market:
-                    return new AutoMarkert();
+                    return new ToyotaSalon();
                 default:
                     return null;
             }

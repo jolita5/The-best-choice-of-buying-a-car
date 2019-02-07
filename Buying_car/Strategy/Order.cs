@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public interface ICar
+    public class Order
     {
+        public decimal TotalPrice { get; internal set; }
 
-        void LaunchWeblink(string url);
-        bool MakeUrlActive(string url);
-
-        void Start();
     }
 }

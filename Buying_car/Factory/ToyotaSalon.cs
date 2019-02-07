@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class BmwSalon : ICar
+    public class ToyotaSalon:ICar
     {
         public string Url { get; private set; }
 
-
-
-        public BmwSalon()
+        public ToyotaSalon()
         {
-            Url = "https://www.bmw.lt/lt/index.html";
+            Url = "https://www.tokvila.lt/";
         }
 
         public void OnMessageEncoded(object sender, LinkClickedEventArgs e)
         {
-            Console.WriteLine(Url);
 
+            Console.WriteLine(Url);
         }
+
+
         public void RichTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             LaunchWeblink(e.Url);
@@ -41,10 +41,9 @@ namespace Buying_car
 
         }
 
-
         public void Start()
         {
-            Console.WriteLine("Bmw Salon was chosen.");
+            Console.WriteLine("Toyota salon was chosen.");
         }
     }
 }

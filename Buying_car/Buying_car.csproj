@@ -43,14 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\Button.cs" />
     <Compile Include="Factory\AudiSalon.cs" />
-    <Compile Include="Factory\AutoMarkert.cs" />
+    <Compile Include="Factory\LinkClickedEventArgs.cs" />
+    <Compile Include="Factory\ToyotaSalon.cs" />
     <Compile Include="Factory\BmwSalon.cs" />
     <Compile Include="Factory\CarFactory.cs" />
     <Compile Include="ICar.cs" />
+    <Compile Include="IShippingCostStrategy.cs" />
+    <Compile Include="Strategy\Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalonTypes.cs" />
+    <Compile Include="Strategy\ShoppingCart.cs" />
+    <Compile Include="Strategy\ShippingAudiSalon.cs" />
+    <Compile Include="Strategy\ShippingToyotaSalon.cs" />
+    <Compile Include="Strategy\ShippingBmwSalon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

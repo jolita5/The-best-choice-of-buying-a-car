@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class AutoMarkert:ICar
+    public class ShippingAudiSalon: IShippingCostStrategy
     {
-
-        public void Start()
+        public decimal Calculate(Order order)
         {
-            Console.WriteLine("Auto-Market was chosen.");
+            return 20;
         }
     }
 }
