@@ -15,6 +15,7 @@ namespace Buying_car
         private Button btn = new Button();
         private bool _isAnswerIncorrect = true;
         private CarFactory factory = new CarFactory();
+        private ShoppingCart service;
         private ICar _obj;
         private int _userChoice;
 
@@ -52,13 +53,40 @@ namespace Buying_car
 
 
 
-            var service = new ShoppingCart(new ShippingAudiSalon());
-            System.Console.WriteLine(service.AddPrice(new Order() { TotalPrice = 2 }));
-            System.Console.WriteLine(service.Order(new Order()));
+            TotalPrise(_userChoice);
 
         }
 
 
+        private void TotalPrise(int userChoice)
+        {
+            
+
+            switch (userChoice)
+            {
+                case 1:
+                    service = new ShoppingCart(new ShippingBmwSalon());
+                    Console.WriteLine("Car price: " + bmw.Price + " Eur.");
+                    Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = bmw.Price }) + " Eur.");
+                    break;
+                case 2:
+                    service = new ShoppingCart(new ShippingAudiSalon());
+                    Console.WriteLine("Car price: " + audi.Price + " Eur.");
+                    Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = audi.Price }) + " Eur.");
+                    break;
+                case 3:
+                    service = new ShoppingCart(new ShippingToyotaSalon());
+                    Console.WriteLine("Car price: " + toyota.Price + " Eur.");
+                    Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = toyota.Price }) + " Eur.");
+                    break;
+ 
+            }
+
+
+        }
 
 
 

@@ -9,6 +9,7 @@ namespace Buying_car
 {
     public class BmwSalon : ICar
     {
+        public decimal Price {get; private set;} = 50606;
         public string Url { get; private set; } = "https://www.bmw.lt/lt/index.html";
 
 
