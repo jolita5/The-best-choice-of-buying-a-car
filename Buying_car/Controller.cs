@@ -60,7 +60,7 @@ namespace Buying_car
 
         private void TotalPrise(int userChoice)
         {
-            
+
 
             switch (userChoice)
             {
@@ -82,7 +82,7 @@ namespace Buying_car
                     Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
                     Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = toyota.Price }) + " Eur.");
                     break;
- 
+
             }
 
 
