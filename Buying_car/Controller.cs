@@ -16,39 +16,54 @@ namespace Buying_car
         private bool _isAnswerIncorrect = true;
         private CarFactory factory = new CarFactory();
         private ICar _obj;
+        private int _userChoice;
 
 
 
+        public void GetUsersChoice()
+        {
+            PrintUsersAnswer();
+        }
 
-        public void PrintUsersAnswer()
+
+        private void PrintUsersAnswer()
         {
 
             Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.Bmw_Salon} - {bmw.Url}," +
                 $" \n 2) {SalonTypes.Audi_Salon} - {audi.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
-            int userChoice = Convert.ToInt32(Console.ReadLine());
+            _userChoice = Convert.ToInt32(Console.ReadLine());
 
 
             while (_isAnswerIncorrect)
             {
                 try
                 {
-                    GetUsersAnswer(userChoice);
+                    GetUsersAnswer(_userChoice);
                     _isAnswerIncorrect = false;
                 }
                 catch (Exception ex)
                 {
 
                     Console.WriteLine(ex.Message);
-                    userChoice = Convert.ToInt32(Console.ReadLine());
+                    _userChoice = Convert.ToInt32(Console.ReadLine());
                 }
             }
+
+
+
+            var service = new ShoppingCart(new ShippingAudiSalon());
+            System.Console.WriteLine(service.AddPrice(new Order() { TotalPrice = 2 }));
+            System.Console.WriteLine(service.Order(new Order()));
 
         }
 
 
 
-        public void GetUsersAnswer(int userChoice)
+
+
+
+        private void GetUsersAnswer(int userChoice)
         {
 
 

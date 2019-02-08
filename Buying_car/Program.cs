@@ -15,13 +15,11 @@ namespace Buying_car
 
             Controller user = new Controller();
 
-            user.PrintUsersAnswer();
+              user.GetUsersChoice();
+
+          
 
 
-
-            //var service = new ShoppingCart(new ShippingAudiSalon ());
-            //System.Console.WriteLine(service.AddPrice(new Order() { TotalPrice = 2 }));
-            //System.Console.WriteLine(service.Order(new Order()));
 
             Console.ReadLine();
 

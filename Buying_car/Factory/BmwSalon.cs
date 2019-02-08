@@ -43,7 +43,7 @@ namespace Buying_car
 
         public void Start()
         {
-            Console.WriteLine("\nBmw Salon was chosen.");
+            Console.WriteLine($"\n{SalonTypes.Bmw_Salon} was chosen.");
         }
     }
 }
