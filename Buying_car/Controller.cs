@@ -24,6 +24,8 @@ namespace Buying_car
         public void GetUsersChoice()
         {
             PrintUsersAnswer();
+          //  PrintTotalPrice(_userChoice);
+
         }
 
 
@@ -51,36 +53,38 @@ namespace Buying_car
                 }
             }
 
-
-
-            TotalPrise(_userChoice);
+            GetTotalPrise(_userChoice);
 
         }
 
 
-        private void TotalPrise(int userChoice)
-        {
 
+        private void GetTotalPrise(int userChoice)
+        {
+            Console.WriteLine("Enter the model, you have chosen:");
+            string model = Console.ReadLine();
+            Console.WriteLine("Enter the price of your chosen car model:");
+            decimal cost = Convert.ToDecimal(Console.ReadLine());
 
             switch (userChoice)
             {
                 case 1:
                     service = new ShoppingCart(new ShippingBmwSalon());
-                    Console.WriteLine("Car price: " + bmw.Price + " Eur.");
+                    Console.WriteLine(model + "\nCar price: " + cost + " Eur.");
                     Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = bmw.Price }) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = cost }) + " Eur.");
                     break;
                 case 2:
                     service = new ShoppingCart(new ShippingAudiSalon());
-                    Console.WriteLine("Car price: " + audi.Price + " Eur.");
+                    Console.WriteLine(model + "\nCar price: " + cost + " Eur.");
                     Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = audi.Price }) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = cost }) + " Eur.");
                     break;
                 case 3:
                     service = new ShoppingCart(new ShippingToyotaSalon());
-                    Console.WriteLine("Car price: " + toyota.Price + " Eur.");
+                    Console.WriteLine(model + "\nCar price: " + cost + " Eur.");
                     Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = toyota.Price }) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = cost }) + " Eur.");
                     break;
 
             }
@@ -95,7 +99,6 @@ namespace Buying_car
         {
 
 
-            bool isAnswerIncorrect = true;
 
             do
             {
@@ -109,7 +112,7 @@ namespace Buying_car
                         _obj = factory.CreateCarShop(SalonTypes.Bmw_Salon);
                         _obj.Start();
 
-                        isAnswerIncorrect = false;
+                        _isAnswerIncorrect = false;
                         break;
                     case 2:
                         btn.MessageEncoded += audi.RichTextBox_LinkClicked;
@@ -118,7 +121,7 @@ namespace Buying_car
                         _obj = factory.CreateCarShop(SalonTypes.Audi_Salon);
                         _obj.Start();
 
-                        isAnswerIncorrect = false;
+                        _isAnswerIncorrect = false;
                         break;
                     case 3:
                         btn.MessageEncoded += toyota.RichTextBox_LinkClicked;
@@ -127,16 +130,16 @@ namespace Buying_car
                         _obj = factory.CreateCarShop(SalonTypes.Toyota_Salon);
                         _obj.Start();
 
-                        isAnswerIncorrect = false;
+                        _isAnswerIncorrect = false;
                         break;
                     default:
-                        Console.WriteLine("Incorrect choice! Please, try again!");
+                        Console.WriteLine("This choice doesn't exist! Please, try again!");
                         userChoice = Convert.ToInt32(Console.ReadLine());
                         break;
                 }
 
             }
-            while (isAnswerIncorrect);
+            while (_isAnswerIncorrect);
 
         }
 

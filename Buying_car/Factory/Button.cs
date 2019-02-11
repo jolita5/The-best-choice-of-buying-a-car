@@ -25,10 +25,7 @@ namespace Buying_car
 
         protected virtual void OnMessageEncoded(string url)
         {
-            if (MessageEncoded != null)
-            {
-                MessageEncoded(this, new LinkClickedEventArgs() { Url = url });
-            }
+            MessageEncoded?.Invoke(this, new LinkClickedEventArgs() { Url = url });
         }
     }
 }

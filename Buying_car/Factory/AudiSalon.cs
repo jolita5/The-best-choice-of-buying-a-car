@@ -11,7 +11,6 @@ namespace Buying_car
 {
     public class AudiSalon : ICar
     {
-        public decimal Price { get; private set; } = 23050;
         public string Url { get; private set; } = "http://www.audi.lt/lt/web/lt.html";
 
 

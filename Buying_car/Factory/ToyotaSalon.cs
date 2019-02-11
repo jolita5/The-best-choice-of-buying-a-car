@@ -9,7 +9,6 @@ namespace Buying_car
 {
     public class ToyotaSalon : ICar
     {
-        public decimal Price {get; private set;} = 45000;
         public string Url { get; private set; } = "https://www.tokvila.lt/";
 
 
