@@ -1,7 +1,9 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +11,7 @@ namespace Buying_car
 {
     public class ToyotaSalon : ICar
     {
-        public string Url { get; private set; } = "https://www.tokvila.lt/";
+        public string Url { get; private set; } = "https://www.tokvila.lt/lt/parduodami-nauji-toyota-automobiliai/automobiliai-salone";
 
 
 
@@ -46,5 +48,6 @@ namespace Buying_car
         {
             Console.WriteLine($"\n{SalonTypes.Toyota_Salon} was chosen.");
         }
+
     }
 }

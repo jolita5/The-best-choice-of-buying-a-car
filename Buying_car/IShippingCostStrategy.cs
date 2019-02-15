@@ -8,6 +8,6 @@ namespace Buying_car
 {
     public interface IShippingCostStrategy
     {
-        decimal Calculate(Order order);
+        decimal Calculate(Order order, decimal carPrice);
     }
 }

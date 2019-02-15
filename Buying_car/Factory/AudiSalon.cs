@@ -11,7 +11,7 @@ namespace Buying_car
 {
     public class AudiSalon : ICar
     {
-        public string Url { get; private set; } = "http://www.audi.lt/lt/web/lt.html";
+        public string Url { get; private set; } = "http://www.audi.lt/lt/web/lt/models.html";
 
 
 

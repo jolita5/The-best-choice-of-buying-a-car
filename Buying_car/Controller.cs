@@ -18,13 +18,14 @@ namespace Buying_car
         private ShoppingCart service;
         private ICar _obj;
         private int _userChoice;
+        private string _model;
+        private decimal _carPrice;
 
 
 
         public void GetUsersChoice()
         {
             PrintUsersAnswer();
-          //  PrintTotalPrice(_userChoice);
 
         }
 
@@ -62,29 +63,29 @@ namespace Buying_car
         private void GetTotalPrise(int userChoice)
         {
             Console.WriteLine("Enter the model, you have chosen:");
-            string model = Console.ReadLine();
+            _model = Console.ReadLine();
             Console.WriteLine("Enter the price of your chosen car model:");
-            decimal cost = Convert.ToDecimal(Console.ReadLine());
+            _carPrice = Convert.ToDecimal(Console.ReadLine());
 
             switch (userChoice)
             {
                 case 1:
                     service = new ShoppingCart(new ShippingBmwSalon());
-                    Console.WriteLine(model + "\nCar price: " + cost + " Eur.");
-                    Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = cost }) + " Eur.");
+                    Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
+                    Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
                     break;
                 case 2:
                     service = new ShoppingCart(new ShippingAudiSalon());
-                    Console.WriteLine(model + "\nCar price: " + cost + " Eur.");
-                    Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = cost }) + " Eur.");
+                    Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
+                    Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
                     break;
                 case 3:
                     service = new ShoppingCart(new ShippingToyotaSalon());
-                    Console.WriteLine(model + "\nCar price: " + cost + " Eur.");
-                    Console.WriteLine("Shipping price: " + service.Order(new Order()) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = cost }) + " Eur.");
+                    Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
+                    Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
+                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
                     break;
 
             }

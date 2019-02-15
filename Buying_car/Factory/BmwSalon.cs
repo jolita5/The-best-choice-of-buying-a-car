@@ -9,7 +9,7 @@ namespace Buying_car
 {
     public class BmwSalon : ICar
     {
-        public string Url { get; private set; } = "https://www.bmw.lt/lt/index.html";
+        public string Url { get; private set; } = "https://www.bmw.lt/lt/all-models.html";
 
 
 

@@ -8,9 +8,25 @@ namespace Buying_car
 {
     public class ShippingAudiSalon: IShippingCostStrategy
     {
-        public decimal Calculate(Order order)
+
+        public decimal Calculate(Order order, decimal carPrice)
         {
-            return 20;
+
+            if(carPrice < 20000)
+            {
+                return 30;
+            }
+            else if(carPrice >= 20000 && carPrice < 30000)
+            {
+                return 25;
+            }
+            else if(carPrice >= 30000)
+            {
+                return 20;
+            }
+
+
+            return 0;
         }
     }
 }

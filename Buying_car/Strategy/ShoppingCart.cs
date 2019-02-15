@@ -17,15 +17,15 @@ namespace Buying_car
         }
 
 
-        public decimal AddPrice(Order order)
+        public decimal AddPrice(Order order, decimal carPrice)
         {
-            return order.TotalPrice += _shippingStrategy.Calculate(order);
+            return order.TotalPrice += _shippingStrategy.Calculate(order, carPrice);
         }
 
 
-        public decimal Order(Order order)
+        public decimal Order(Order order, decimal carPrice)
         {
-            return _shippingStrategy.Calculate(order);
+            return _shippingStrategy.Calculate(order, carPrice);
         }
     }
 }
