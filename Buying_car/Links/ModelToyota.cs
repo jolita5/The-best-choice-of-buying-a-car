@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class UsersModelToyota
+    public class ModelToyota
     {
 
 
@@ -47,13 +47,13 @@ namespace Buying_car
                    item.Descendants("span")
                    .Where(node => node.GetAttributeValue("class", "")
                    .Equals("price-new")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
-                   ,@"\d+.\d+");
+                   , @"\d+.\d+");
 
 
-                    PrintColor(ConsoleColor.Red, $" New price: {newPrice} Eur.");
+                    PrintColor(ConsoleColor.Red, $"New price: {newPrice} Eur!");
                     Console.ResetColor();
                 }
-               
+
             }
 
             Console.WriteLine();

@@ -9,7 +9,7 @@ namespace Buying_car
     public enum SalonTypes
     {
         Bmw_Salon,
-        Audi_Salon,
+        Nissan_Salon,
         Toyota_Salon
        
     }

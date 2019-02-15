@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class AudiSalon : ICar
+    public class NissanSalon : ICar
     {
-        public string Url { get; private set; } = "http://www.audi.lt/lt/web/lt/models.html";
+        public string Url { get; private set; } = "https://www.nissan.lt/automobiliai/nauji-automobiliai.html";
 
 
 
@@ -47,7 +47,7 @@ namespace Buying_car
         public void Start()
         {
 
-            Console.WriteLine($"\n{SalonTypes.Audi_Salon} was chosen.");
+            Console.WriteLine($"\n{SalonTypes.Nissan_Salon} was chosen.");
         }
 
 

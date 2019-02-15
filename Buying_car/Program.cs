@@ -1,4 +1,5 @@
 ﻿using Buying_car.Factory;
+using Buying_car.Links;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,12 @@ namespace Buying_car
             Console.WriteLine("Enter Link:");
             string userUrl = Console.ReadLine();
 
-            UsersModelToyota userModel = new UsersModelToyota();
+            // ModelToyota userModel = new ModelToyota();
+            // userModel.GetCurrentPrice(userUrl);
 
+            ModelNissan nissan = new ModelNissan();
 
-
-
-            userModel.GetCurrentPrice(userUrl);
+            nissan.GetCurrentPrice(userUrl);
 
             Console.ReadLine();
 

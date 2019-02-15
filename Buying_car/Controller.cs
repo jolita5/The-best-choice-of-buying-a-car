@@ -10,7 +10,7 @@ namespace Buying_car
     public class Controller
     {
         private BmwSalon bmw = new BmwSalon();
-        private AudiSalon audi = new AudiSalon();
+        private NissanSalon audi = new NissanSalon();
         private ToyotaSalon toyota = new ToyotaSalon();
         private Button btn = new Button();
         private bool _isAnswerIncorrect = true;
@@ -34,7 +34,7 @@ namespace Buying_car
         {
 
             Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.Bmw_Salon} - {bmw.Url}," +
-                $" \n 2) {SalonTypes.Audi_Salon} - {audi.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
+                $" \n 2) {SalonTypes.Nissan_Salon} - {audi.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
             _userChoice = Convert.ToInt32(Console.ReadLine());
 
@@ -119,7 +119,7 @@ namespace Buying_car
                         btn.MessageEncoded += audi.RichTextBox_LinkClicked;
                         btn.DoubleClick(audi.Url);
 
-                        _obj = factory.CreateCarShop(SalonTypes.Audi_Salon);
+                        _obj = factory.CreateCarShop(SalonTypes.Nissan_Salon);
                         _obj.Start();
 
                         _isAnswerIncorrect = false;
