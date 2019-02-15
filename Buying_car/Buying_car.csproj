@@ -66,6 +66,7 @@
     <Compile Include="Strategy\ShippingAudiSalon.cs" />
     <Compile Include="Strategy\ShippingToyotaSalon.cs" />
     <Compile Include="Strategy\ShippingBmwSalon.cs" />
+    <Compile Include="Links\UsersModelToyota.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

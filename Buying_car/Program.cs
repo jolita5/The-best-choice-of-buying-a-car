@@ -15,11 +15,17 @@ namespace Buying_car
 
             Controller user = new Controller();
 
-              user.GetUsersChoice();
+            // user.GetUsersChoice();
 
-          
+            Console.WriteLine("Enter Link:");
+            string userUrl = Console.ReadLine();
+
+            UsersModelToyota userModel = new UsersModelToyota();
 
 
+
+
+            userModel.GetCurrentPrice(userUrl);
 
             Console.ReadLine();
 
