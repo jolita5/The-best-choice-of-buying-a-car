@@ -13,8 +13,8 @@ namespace Buying_car.Factory
         {
             switch (car)
             {
-                case SalonTypes.Bmw_Salon:
-                   return new BmwSalon();
+                case SalonTypes.AutoGidas:
+                   return new AutoGidas();
                 case SalonTypes.Nissan_Salon:
                    return new NissanSalon();
                 case SalonTypes.Toyota_Salon:

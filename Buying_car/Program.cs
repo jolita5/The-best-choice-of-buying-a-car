@@ -21,12 +21,17 @@ namespace Buying_car
             Console.WriteLine("Enter Link:");
             string userUrl = Console.ReadLine();
 
-            // ModelToyota userModel = new ModelToyota();
-            // userModel.GetCurrentPrice(userUrl);
+           ModelToyota userModel = new ModelToyota();
+         // userModel.GetCurrentPrice(userUrl);
 
             ModelNissan nissan = new ModelNissan();
 
-            nissan.GetCurrentPrice(userUrl);
+            //   nissan.GetCurrentPrice(userUrl);
+
+
+            ModelAutoGidas autogidas = new ModelAutoGidas();
+
+            autogidas.GetCurrentPrice(userUrl);
 
             Console.ReadLine();
 

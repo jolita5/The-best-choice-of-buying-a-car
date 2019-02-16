@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class BmwSalon : ICar
+    public class AutoGidas : ICar
     {
-        public string Url { get; private set; } = "https://www.bmw.lt/lt/all-models.html";
+        public string Url { get; private set; } = "https://en.autogidas.lt/";
 
 
 
@@ -43,7 +43,7 @@ namespace Buying_car
 
         public void Start()
         {
-            Console.WriteLine($"\n{SalonTypes.Bmw_Salon} was chosen.");
+            Console.WriteLine($"\n{SalonTypes.AutoGidas} was chosen.");
         }
     }
 }

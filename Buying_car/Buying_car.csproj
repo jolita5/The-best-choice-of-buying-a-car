@@ -54,11 +54,12 @@
     <Compile Include="Factory\NissanSalon.cs" />
     <Compile Include="Factory\LinkClickedEventArgs.cs" />
     <Compile Include="Factory\ToyotaSalon.cs" />
-    <Compile Include="Factory\BmwSalon.cs" />
+    <Compile Include="Factory\AutoGidas.cs" />
     <Compile Include="Factory\CarFactory.cs" />
     <Compile Include="ICar.cs" />
     <Compile Include="IShippingCostStrategy.cs" />
     <Compile Include="Links\ModelNissan.cs" />
+    <Compile Include="Links\ModelAutoGidas.cs" />
     <Compile Include="Strategy\Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="Strategy\ShoppingCart.cs" />
     <Compile Include="Strategy\ShippingNissanSalon.cs" />
     <Compile Include="Strategy\ShippingToyotaSalon.cs" />
-    <Compile Include="Strategy\ShippingBmwSalon.cs" />
+    <Compile Include="Strategy\ShippingAutoGidas.cs" />
     <Compile Include="Links\ModelToyota.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,17 +10,19 @@ namespace Buying_car
 {
     public class Controller
     {
-        private BmwSalon bmw = new BmwSalon();
+        private AutoGidas bmw = new AutoGidas();
         private NissanSalon audi = new NissanSalon();
         private ToyotaSalon toyota = new ToyotaSalon();
         private Button btn = new Button();
-        private bool _isAnswerIncorrect = true;
         private CarFactory factory = new CarFactory();
+        ModelAutoGidas autogidas = new ModelAutoGidas();
+
         private ShoppingCart service;
         private ICar _obj;
+        private bool _isAnswerIncorrect = true;
         private int _userChoice;
         private string _model;
-        private decimal _carPrice;
+        private string _userUrl;
 
 
 
@@ -33,7 +36,7 @@ namespace Buying_car
         private void PrintUsersAnswer()
         {
 
-            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.Bmw_Salon} - {bmw.Url}," +
+            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {bmw.Url}," +
                 $" \n 2) {SalonTypes.Nissan_Salon} - {audi.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
             _userChoice = Convert.ToInt32(Console.ReadLine());
@@ -60,35 +63,65 @@ namespace Buying_car
 
 
 
+
+        public static bool IsValidURL(string url)
+        {
+            WebRequest webRequest = WebRequest.Create(url);
+            WebResponse webResponse;
+            try
+            {
+                webResponse = webRequest.GetResponse();
+            }
+            catch 
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+
         private void GetTotalPrise(int userChoice)
         {
-            Console.WriteLine("Enter the model, you have chosen:");
-            _model = Console.ReadLine();
-            Console.WriteLine("Enter the price of your chosen car model:");
-            _carPrice = Convert.ToDecimal(Console.ReadLine());
 
-            switch (userChoice)
+            Console.WriteLine("Enter the link of car model you have chosen:");
+           _userUrl = Console.ReadLine();
+
+
+            if (IsValidURL(_userUrl) == true)
             {
-                case 1:
-                    service = new ShoppingCart(new ShippingBmwSalon());
-                    Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
-                    Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
-                    break;
-                case 2:
-                    service = new ShoppingCart(new ShippingAudiSalon());
-                    Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
-                    Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
-                    break;
-                case 3:
-                    service = new ShoppingCart(new ShippingToyotaSalon());
-                    Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
-                    Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
-                    Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
-                    break;
+                switch (userChoice)
+                {
+                    case 1:
+                        service = new ShoppingCart(new ShippingAutoGidas());
+                        autogidas.GetModelName(_userUrl);
+                        autogidas.GetCurrentPrice(_userUrl);
+                        Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
+                        Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
+                        break;
+                    case 2:
+                        service = new ShoppingCart(new ShippingAudiSalon());
+                        Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
+                        Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
+                        Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
+                        break;
+                    case 3:
+                        service = new ShoppingCart(new ShippingToyotaSalon());
+                        Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
+                        Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
+                        Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
+                        break;
 
+                }
             }
+            else
+            {
+                Console.WriteLine("Link don't exist! Please, check the link.");
+            }
+            
+
+           
 
 
         }
@@ -110,7 +143,7 @@ namespace Buying_car
                         btn.MessageEncoded += bmw.RichTextBox_LinkClicked;
                         btn.DoubleClick(bmw.Url);
 
-                        _obj = factory.CreateCarShop(SalonTypes.Bmw_Salon);
+                        _obj = factory.CreateCarShop(SalonTypes.AutoGidas);
                         _obj.Start();
 
                         _isAnswerIncorrect = false;

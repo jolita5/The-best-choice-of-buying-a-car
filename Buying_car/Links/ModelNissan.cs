@@ -20,37 +20,44 @@ namespace Buying_car.Links
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
 
-            var model = htmlDocument.DocumentNode.Descendants("div")
+            var model = htmlDocument.DocumentNode.Descendants("span")
            .Where(node => node.GetAttributeValue("class", "")
-           .Contains("c_023")).ToList();
+           .Contains("full-price")).ToList();
+
+            var modelName = htmlDocument.DocumentNode.SelectSingleNode("//h1");
+            Console.WriteLine(modelName.InnerHtml);
+
+            //var price = htmlDocument.DocumentNode.SelectSingleNode("//span");
+
+
 
 
 
             foreach (var item in model)
             {
-                Console.WriteLine(item.GetAttributeValue("c_23", ""));
-                Console.WriteLine(item.Descendants("div")
-                      .Where(node => node.GetAttributeValue("class", "")
-                      .Equals("heading-group")).FirstOrDefault().InnerText.Trim('\r', '\n', 't'));
+                Console.WriteLine(item.GetAttributeValue("full-price", "").ToString());
+
+                //Console.WriteLine(item.Descendants("span")
+                //      .Where(node => node.GetAttributeValue("class", "")
+                //      .Equals("c_008")).FirstOrDefault().InnerText.Trim('\r', '\n', 't'));
+
+                //var oldPrice = Regex.Match(
+                //      item.Descendants("span")
+                //      .Where(node => node.GetAttributeValue("class, dir", "")
+                //      .Equals("full-price, ltr")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
+                //  , @"\d+.\d+");
+
+                //Console.WriteLine(oldPrice);
 
 
-                var oldPrice = Regex.Match(
-                      item.Descendants("p")
-                      .Where(node => node.GetAttributeValue("class", "")
-                      .Equals("disclaimer")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
-                  , @"\d+.\d+");
-                Console.WriteLine($"Price: {oldPrice} Eur.");
 
-              
-    
-                
             }
 
             Console.WriteLine();
 
+
+
+
         }
-
-        
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class ShippingBmwSalon: IShippingCostStrategy
+    public class ShippingAutoGidas: IShippingCostStrategy
     {
 
         public decimal Calculate(Order order, decimal carPrice)

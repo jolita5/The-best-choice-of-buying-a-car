@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Buying_car
 
         public async void GetCurrentPrice(string url)
         {
-
+            
             var httpClient = new HttpClient();
             var html = await httpClient.GetStringAsync(url);
 
@@ -27,11 +28,14 @@ namespace Buying_car
            .Contains("col-xs-12 col-sm-7 col-md-6 right-column")).ToList();
 
 
+            var modelName = htmlDocument.DocumentNode.SelectSingleNode("//h2");
+
+            Console.WriteLine(modelName.InnerHtml);
 
             foreach (var item in model)
             {
-                Console.WriteLine(item.GetAttributeValue("col-xs-12 col-sm-7 col-md-6 right-column", ""));
 
+                Console.WriteLine(item.GetAttributeValue("col-xs-12 col-sm-7 col-md-6 right-column", ""));
                 var oldPrice = Regex.Match(
                       item.Descendants("div")
                       .Where(node => node.GetAttributeValue("class", "")
@@ -49,10 +53,11 @@ namespace Buying_car
                    .Equals("price-new")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
                    , @"\d+.\d+");
 
-
                     PrintColor(ConsoleColor.Red, $"New price: {newPrice} Eur!");
                     Console.ResetColor();
                 }
+
+                
 
             }
 
