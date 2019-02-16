@@ -22,29 +22,35 @@ namespace Buying_car.Links
 
             var model = htmlDocument.DocumentNode.Descendants("div")
            .Where(node => node.GetAttributeValue("class", "")
-           .Contains("c_099-2-overview-core")).ToList();
+           .Contains("c_023")).ToList();
 
 
 
             foreach (var item in model)
             {
-                Console.WriteLine(item.GetAttributeValue("col-xs-12 col-sm-7 col-md-6 right-column", ""));
+                Console.WriteLine(item.GetAttributeValue("c_23", ""));
+                Console.WriteLine(item.Descendants("div")
+                      .Where(node => node.GetAttributeValue("class", "")
+                      .Equals("heading-group")).FirstOrDefault().InnerText.Trim('\r', '\n', 't'));
+
 
                 var oldPrice = Regex.Match(
-                      item.Descendants("span")
+                      item.Descendants("p")
                       .Where(node => node.GetAttributeValue("class", "")
-                      .Equals("full-price")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
+                      .Equals("disclaimer")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
                   , @"\d+.\d+");
-
-
                 Console.WriteLine($"Price: {oldPrice} Eur.");
 
-
+              
+    
+                
             }
 
             Console.WriteLine();
 
         }
+
+        
 
     }
 }
