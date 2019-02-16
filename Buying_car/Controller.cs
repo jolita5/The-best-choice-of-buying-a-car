@@ -21,50 +21,93 @@ namespace Buying_car
         ModelToyota userToyota = new ModelToyota();
 
         private ShoppingCart service;
-        private ICar _obj;
+        private ICar _car;
         private bool _isAnswerIncorrect = true;
-        private int _userChoice;
         private string _userUrl;
         private decimal _hours;
 
 
 
-        public void GetUsersChoice()
-        {
-            PrintUsersAnswer();
-
-        }
 
 
-        private void PrintUsersAnswer()
+        public void PrintUsersAnswer(int userChoice)
         {
 
             Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {autoGidas.Url}," +
                 $" \n 2) {SalonTypes.Nissan_Salon} - {nissan.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
-            _userChoice = Convert.ToInt32(Console.ReadLine());
+            userChoice = Convert.ToInt32(Console.ReadLine());
+            bool isInCorrect = true;
 
-
-            while (_isAnswerIncorrect)
+            while (isInCorrect)
             {
                 try
                 {
-                    GetUsersAnswer(_userChoice);
-                    _isAnswerIncorrect = false;
+                    GetUsersChoisenSalon(userChoice);
+                    GetTotalPrise(userChoice);
+                    isInCorrect = false;
                 }
                 catch (Exception ex)
                 {
 
                     Console.WriteLine(ex.Message);
-                    _userChoice = Convert.ToInt32(Console.ReadLine());
+                    userChoice = Convert.ToInt32(Console.ReadLine());
+
                 }
             }
 
-            GetTotalPrise(_userChoice);
 
         }
 
 
+
+        private void GetUsersChoisenSalon(int userSalon)
+        {
+
+
+
+            do
+            {
+
+                switch (userSalon)
+                {
+                    case 1:
+                        btn.MessageEncoded += autoGidas.RichTextBox_LinkClicked;
+                        btn.DoubleClick(autoGidas.Url);
+
+                        _car = factory.CreateCarShop(SalonTypes.AutoGidas);
+                        _car.Start();
+
+                        _isAnswerIncorrect = false;
+                        break;
+                    case 2:
+                        btn.MessageEncoded += nissan.RichTextBox_LinkClicked;
+                        btn.DoubleClick(nissan.Url);
+
+                        _car = factory.CreateCarShop(SalonTypes.Nissan_Salon);
+                        _car.Start();
+
+                        _isAnswerIncorrect = false;
+                        break;
+                    case 3:
+                        btn.MessageEncoded += toyota.RichTextBox_LinkClicked;
+                        btn.DoubleClick(toyota.Url);
+
+                        _car = factory.CreateCarShop(SalonTypes.Toyota_Salon);
+                        _car.Start();
+
+                        _isAnswerIncorrect = false;
+                        break;
+                    default:
+                        Console.WriteLine("This choice doesn't exist! Please, try again!");
+                        userSalon = Convert.ToInt32(Console.ReadLine());
+                        break;
+                }
+
+            }
+            while (_isAnswerIncorrect);
+
+        }
 
 
         private bool IsValidURL(string url)
@@ -146,54 +189,6 @@ namespace Buying_car
 
 
 
-
-        private void GetUsersAnswer(int userChoice)
-        {
-
-
-
-            do
-            {
-
-                switch (userChoice)
-                {
-                    case 1:
-                        btn.MessageEncoded += autoGidas.RichTextBox_LinkClicked;
-                        btn.DoubleClick(autoGidas.Url);
-
-                        _obj = factory.CreateCarShop(SalonTypes.AutoGidas);
-                        _obj.Start();
-
-                        _isAnswerIncorrect = false;
-                        break;
-                    case 2:
-                        btn.MessageEncoded += nissan.RichTextBox_LinkClicked;
-                        btn.DoubleClick(nissan.Url);
-
-                        _obj = factory.CreateCarShop(SalonTypes.Nissan_Salon);
-                        _obj.Start();
-
-                        _isAnswerIncorrect = false;
-                        break;
-                    case 3:
-                        btn.MessageEncoded += toyota.RichTextBox_LinkClicked;
-                        btn.DoubleClick(toyota.Url);
-
-                        _obj = factory.CreateCarShop(SalonTypes.Toyota_Salon);
-                        _obj.Start();
-
-                        _isAnswerIncorrect = false;
-                        break;
-                    default:
-                        Console.WriteLine("This choice doesn't exist! Please, try again!");
-                        userChoice = Convert.ToInt32(Console.ReadLine());
-                        break;
-                }
-
-            }
-            while (_isAnswerIncorrect);
-
-        }
 
     }
 }
