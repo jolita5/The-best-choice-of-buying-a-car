@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public interface IShippingCostStrategy
+    public class TrialDriveNissanSalon: ITrialDriveCostStrategy
     {
-        decimal Calculate(Order order, decimal carPrice);
+
+        public decimal Calculate(Order order)
+        {
+            return 80;
+        }
     }
 }

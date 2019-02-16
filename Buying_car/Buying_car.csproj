@@ -58,8 +58,8 @@
     <Compile Include="Factory\CarFactory.cs" />
     <Compile Include="ICar.cs" />
     <Compile Include="IShippingCostStrategy.cs" />
-    <Compile Include="Links\ModelNissan.cs" />
-    <Compile Include="Links\ModelAutoGidas.cs" />
+    <Compile Include="UsersModel\ModelNissan.cs" />
+    <Compile Include="UsersModel\ModelAutoGidas.cs" />
     <Compile Include="Strategy\Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Strategy\ShippingNissanSalon.cs" />
     <Compile Include="Strategy\ShippingToyotaSalon.cs" />
     <Compile Include="Strategy\ShippingAutoGidas.cs" />
-    <Compile Include="Links\ModelToyota.cs" />
+    <Compile Include="UsersModel\ModelToyota.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

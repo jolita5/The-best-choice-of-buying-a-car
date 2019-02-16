@@ -1,4 +1,5 @@
 ﻿using Buying_car.Factory;
+using Buying_car.Links;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,19 @@ namespace Buying_car
 {
     public class Controller
     {
-        private AutoGidas bmw = new AutoGidas();
-        private NissanSalon audi = new NissanSalon();
+        private AutoGidas autoGidas = new AutoGidas();
+        private NissanSalon nissan = new NissanSalon();
         private ToyotaSalon toyota = new ToyotaSalon();
         private Button btn = new Button();
         private CarFactory factory = new CarFactory();
-        ModelAutoGidas autogidas = new ModelAutoGidas();
+        ModelAutoGidas userAutoGidas = new ModelAutoGidas();
+        ModelNissan userNissan = new ModelNissan();
+        ModelToyota userToyota = new ModelToyota();
 
         private ShoppingCart service;
         private ICar _obj;
         private bool _isAnswerIncorrect = true;
         private int _userChoice;
-        private string _model;
         private string _userUrl;
 
 
@@ -36,8 +38,8 @@ namespace Buying_car
         private void PrintUsersAnswer()
         {
 
-            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {bmw.Url}," +
-                $" \n 2) {SalonTypes.Nissan_Salon} - {audi.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
+            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {autoGidas.Url}," +
+                $" \n 2) {SalonTypes.Nissan_Salon} - {nissan.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
             _userChoice = Convert.ToInt32(Console.ReadLine());
 
@@ -64,15 +66,16 @@ namespace Buying_car
 
 
 
-        public static bool IsValidURL(string url)
+        private bool IsValidURL(string url)
         {
             WebRequest webRequest = WebRequest.Create(url);
             WebResponse webResponse;
+
             try
             {
                 webResponse = webRequest.GetResponse();
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -86,42 +89,53 @@ namespace Buying_car
         {
 
             Console.WriteLine("Enter the link of car model you have chosen:");
-           _userUrl = Console.ReadLine();
+            _userUrl = Console.ReadLine();
+            bool check = true;
 
+            Console.WriteLine();
 
-            if (IsValidURL(_userUrl) == true)
+            while(check)
             {
-                switch (userChoice)
+                if (IsValidURL(_userUrl) == true)
                 {
-                    case 1:
-                        service = new ShoppingCart(new ShippingAutoGidas());
-                        autogidas.GetModelName(_userUrl);
-                        autogidas.GetCurrentPrice(_userUrl);
-                        Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
-                        Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
-                        break;
-                    case 2:
-                        service = new ShoppingCart(new ShippingAudiSalon());
-                        Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
-                        Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
-                        Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
-                        break;
-                    case 3:
-                        service = new ShoppingCart(new ShippingToyotaSalon());
-                        Console.WriteLine(_model + "\nCar price: " + _carPrice + " Eur.");
-                        Console.WriteLine("Shipping price: " + service.Order(new Order(), _carPrice) + " Eur.");
-                        Console.WriteLine("Total price: " + service.AddPrice(new Order() { TotalPrice = _carPrice }, _carPrice) + " Eur.");
-                        break;
+                    switch (userChoice)
+                    {
+                        case 1:
+                            service = new ShoppingCart(new TrialDriveAutoGidas());
+                            userAutoGidas.GetCurrentPriceAndModel(_userUrl);
+                            Console.WriteLine("Trial drive 1 h: " + service.Order(new Order()) + " Eur.");
+                            check = false;
+                            Console.WriteLine("Trial drive 2 h: " + service.AddPrice(new Order() { TotalPrice = 3 }) + " Eur.");
+                            break;
+                        case 2:
+                            service = new ShoppingCart(new TrialDriveNissanSalon());
+                            userNissan.GetCurrentPriceAndModel(_userUrl);
+                            Console.WriteLine("Trial drive 1 h: " + service.Order(new Order()) + " Eur.");
+                            Console.WriteLine("Trial drive 2 h: " + service.AddPrice(new Order() { TotalPrice = 3}) + " Eur.");
+                            check = false;
+                            break;
+                        case 3:
+                            service = new ShoppingCart(new TrialDriveToyotaSalon());
+                            userToyota.GetCurrentPriceAndModel(_userUrl);
+                            Console.WriteLine("Trial drive 1 h: " + service.Order(new Order()) + " Eur.");
+                            Console.WriteLine("Trial drive 2 h: " + service.AddPrice(new Order() { TotalPrice = 3 }) + " Eur.");
+                            check = false;
+                            break;
 
+                    }
                 }
-            }
-            else
-            {
-                Console.WriteLine("Link don't exist! Please, check the link.");
-            }
-            
+                else
+                {
+                    Console.WriteLine("Link don't exist! Please, check the link.");
+                    _userUrl = Console.ReadLine();
+                }
 
-           
+            }
+
+
+
+
+
 
 
         }
@@ -140,8 +154,8 @@ namespace Buying_car
                 switch (userChoice)
                 {
                     case 1:
-                        btn.MessageEncoded += bmw.RichTextBox_LinkClicked;
-                        btn.DoubleClick(bmw.Url);
+                        btn.MessageEncoded += autoGidas.RichTextBox_LinkClicked;
+                        btn.DoubleClick(autoGidas.Url);
 
                         _obj = factory.CreateCarShop(SalonTypes.AutoGidas);
                         _obj.Start();
@@ -149,8 +163,8 @@ namespace Buying_car
                         _isAnswerIncorrect = false;
                         break;
                     case 2:
-                        btn.MessageEncoded += audi.RichTextBox_LinkClicked;
-                        btn.DoubleClick(audi.Url);
+                        btn.MessageEncoded += nissan.RichTextBox_LinkClicked;
+                        btn.DoubleClick(nissan.Url);
 
                         _obj = factory.CreateCarShop(SalonTypes.Nissan_Salon);
                         _obj.Start();

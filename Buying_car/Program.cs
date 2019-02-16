@@ -16,22 +16,8 @@ namespace Buying_car
 
             Controller user = new Controller();
 
-            // user.GetUsersChoice();
+            user.GetUsersChoice();
 
-            Console.WriteLine("Enter Link:");
-            string userUrl = Console.ReadLine();
-
-           ModelToyota userModel = new ModelToyota();
-         // userModel.GetCurrentPrice(userUrl);
-
-            ModelNissan nissan = new ModelNissan();
-
-            //   nissan.GetCurrentPrice(userUrl);
-
-
-            ModelAutoGidas autogidas = new ModelAutoGidas();
-
-            autogidas.GetCurrentPrice(userUrl);
 
             Console.ReadLine();
 
@@ -40,7 +26,7 @@ namespace Buying_car
 
         }
 
-       
+
 
     }
 }

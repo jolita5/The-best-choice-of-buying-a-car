@@ -14,9 +14,9 @@ namespace Buying_car
     {
 
 
-        public async void GetCurrentPrice(string url)
+        public async void GetCurrentPriceAndModel(string url)
         {
-            
+
             var httpClient = new HttpClient();
             var html = await httpClient.GetStringAsync(url);
 
@@ -57,11 +57,7 @@ namespace Buying_car
                     Console.ResetColor();
                 }
 
-                
-
             }
-
-            Console.WriteLine();
 
         }
 

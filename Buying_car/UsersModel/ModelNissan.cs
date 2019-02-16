@@ -11,7 +11,7 @@ namespace Buying_car.Links
     public class ModelNissan
     {
 
-        public async void GetCurrentPrice(string url)
+        public async void GetCurrentPriceAndModel(string url)
         {
 
             var httpClient = new System.Net.Http.HttpClient();

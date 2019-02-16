@@ -8,24 +8,24 @@ namespace Buying_car
 {
     public class ShoppingCart
     {
-        private readonly IShippingCostStrategy _shippingStrategy;
+        private readonly ITrialDriveCostStrategy _trialDriveStrategy;
 
 
-        public ShoppingCart(IShippingCostStrategy shippingStrategy)
+        public ShoppingCart(ITrialDriveCostStrategy shippingStrategy)
         {
-            _shippingStrategy = shippingStrategy;
+            _trialDriveStrategy = shippingStrategy;
         }
 
 
-        public decimal AddPrice(Order order, decimal carPrice)
+        public decimal AddPrice(Order order)
         {
-            return order.TotalPrice += _shippingStrategy.Calculate(order, carPrice);
+            return order.TotalPrice += _trialDriveStrategy.Calculate(order);
         }
 
 
-        public decimal Order(Order order, decimal carPrice)
+        public decimal Order(Order order)
         {
-            return _shippingStrategy.Calculate(order, carPrice);
+            return _trialDriveStrategy.Calculate(order);
         }
     }
 }

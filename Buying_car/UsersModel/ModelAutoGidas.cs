@@ -11,7 +11,9 @@ namespace Buying_car
 {
     public class ModelAutoGidas
     {
-        public async void GetModelName(string url)
+
+
+        public async void GetCurrentPriceAndModel(string url)
         {
 
             var httpClient = new HttpClient();
@@ -31,34 +33,6 @@ namespace Buying_car
                 Console.WriteLine(item.Descendants("div")
                       .Where(node => node.GetAttributeValue("class", "")
                       .Equals("title-container")).FirstOrDefault().InnerText.Trim('\r', '\n', 't'));
-
-            }
-
-        }
-
-
-
-        public async void GetCurrentPrice(string url)
-        {
-
-            var httpClient = new HttpClient();
-            var html = await httpClient.GetStringAsync(url);
-
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(html);
-
-            var model = htmlDocument.DocumentNode.Descendants("div")
-           .Where(node => node.GetAttributeValue("class", "")
-           .Contains("panel-left")).ToList();
-
-
-            foreach (var item in model)
-            {
-
-                Console.WriteLine(item.Descendants("div")
-                      .Where(node => node.GetAttributeValue("class", "")
-                      .Equals("title-container")).FirstOrDefault().InnerText.Trim('\r', '\n', 't'));
-
 
                 var price = Regex.Match(
                    item.Descendants("span")
@@ -72,7 +46,8 @@ namespace Buying_car
 
             }
 
-
         }
+
+
     }
 }
