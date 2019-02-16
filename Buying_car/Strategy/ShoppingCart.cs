@@ -19,7 +19,7 @@ namespace Buying_car
 
         public decimal AddPrice(Order order)
         {
-            return order.TotalPrice += _trialDriveStrategy.Calculate(order);
+            return order.Hour += _trialDriveStrategy.Calculate(order);
         }
 
 

@@ -8,7 +8,7 @@ namespace Buying_car
 {
     public class Order
     {
-        public decimal TotalPrice { get; internal set; }
+        public decimal Hour { get; internal set; }
 
     }
 }

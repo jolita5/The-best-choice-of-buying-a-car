@@ -57,7 +57,7 @@
     <Compile Include="Factory\AutoGidas.cs" />
     <Compile Include="Factory\CarFactory.cs" />
     <Compile Include="ICar.cs" />
-    <Compile Include="IShippingCostStrategy.cs" />
+    <Compile Include="ITrialDriveCostStrategy.cs" />
     <Compile Include="UsersModel\ModelNissan.cs" />
     <Compile Include="UsersModel\ModelAutoGidas.cs" />
     <Compile Include="Strategy\Order.cs" />
@@ -65,9 +65,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalonTypes.cs" />
     <Compile Include="Strategy\ShoppingCart.cs" />
-    <Compile Include="Strategy\ShippingNissanSalon.cs" />
-    <Compile Include="Strategy\ShippingToyotaSalon.cs" />
-    <Compile Include="Strategy\ShippingAutoGidas.cs" />
+    <Compile Include="Strategy\TrialDriveNissanSalon.cs" />
+    <Compile Include="Strategy\TrialDriveToyotaSalon.cs" />
+    <Compile Include="Strategy\TrialDriveAutoGidas.cs" />
     <Compile Include="UsersModel\ModelToyota.cs" />
   </ItemGroup>
   <ItemGroup>

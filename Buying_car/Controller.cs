@@ -25,6 +25,7 @@ namespace Buying_car
         private bool _isAnswerIncorrect = true;
         private int _userChoice;
         private string _userUrl;
+        private decimal _hours;
 
 
 
@@ -90,6 +91,9 @@ namespace Buying_car
 
             Console.WriteLine("Enter the link of car model you have chosen:");
             _userUrl = Console.ReadLine();
+            Console.WriteLine("How many hours would you like to take for the trial drive?");
+            _hours = Convert.ToDecimal(Console.ReadLine());
+
             bool check = true;
 
             Console.WriteLine();
@@ -103,22 +107,22 @@ namespace Buying_car
                         case 1:
                             service = new ShoppingCart(new TrialDriveAutoGidas());
                             userAutoGidas.GetCurrentPriceAndModel(_userUrl);
-                            Console.WriteLine("Trial drive 1 h: " + service.Order(new Order()) + " Eur.");
+                            Console.WriteLine($"Trial drive 1 h: {service.Order(new Order())} Eur.");
                             check = false;
-                            Console.WriteLine("Trial drive 2 h: " + service.AddPrice(new Order() { TotalPrice = 3 }) + " Eur.");
+                            Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10) })} Eur.");
                             break;
                         case 2:
                             service = new ShoppingCart(new TrialDriveNissanSalon());
                             userNissan.GetCurrentPriceAndModel(_userUrl);
-                            Console.WriteLine("Trial drive 1 h: " + service.Order(new Order()) + " Eur.");
-                            Console.WriteLine("Trial drive 2 h: " + service.AddPrice(new Order() { TotalPrice = 3}) + " Eur.");
+                            Console.WriteLine($"Trial drive 1 h: {service.Order(new Order())} Eur.");
+                            Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10) })} Eur.");
                             check = false;
                             break;
                         case 3:
                             service = new ShoppingCart(new TrialDriveToyotaSalon());
                             userToyota.GetCurrentPriceAndModel(_userUrl);
-                            Console.WriteLine("Trial drive 1 h: " + service.Order(new Order()) + " Eur.");
-                            Console.WriteLine("Trial drive 2 h: " + service.AddPrice(new Order() { TotalPrice = 3 }) + " Eur.");
+                            Console.WriteLine($"Trial drive 1 h: {service.Order(new Order())} Eur.");
+                            Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10)}) } Eur.");
                             check = false;
                             break;
 
