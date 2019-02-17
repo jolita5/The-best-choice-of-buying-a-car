@@ -27,36 +27,43 @@ namespace Buying_car
            .Where(node => node.GetAttributeValue("class", "")
            .Contains("col-xs-12 col-sm-7 col-md-6 right-column")).ToList();
 
-
-            var modelName = htmlDocument.DocumentNode.SelectSingleNode("//h2");
-
-            Console.WriteLine(modelName.InnerHtml);
-
-            foreach (var item in model)
+            if (htmlDocument.DocumentNode.Descendants("div").Any(n => n.GetAttributeValue("class", "").Contains("col-xs-12 col-sm-7 col-md-6 right-column")))
             {
+                var modelName = htmlDocument.DocumentNode.SelectSingleNode("//h2");
 
-                Console.WriteLine(item.GetAttributeValue("col-xs-12 col-sm-7 col-md-6 right-column", ""));
-                var oldPrice = Regex.Match(
-                      item.Descendants("div")
-                      .Where(node => node.GetAttributeValue("class", "")
-                      .Equals("row")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
-                  , @"\d+.\d+");
+                Console.WriteLine(modelName.InnerHtml);
 
-
-                Console.WriteLine($"Price: {oldPrice} Eur.");
-
-                if (item.Descendants("span").Any(n => n.GetAttributeValue("class", "").Contains("price-new")))
+                foreach (var item in model)
                 {
-                    var newPrice = Regex.Match(
-                   item.Descendants("span")
-                   .Where(node => node.GetAttributeValue("class", "")
-                   .Equals("price-new")).FirstOrDefault().InnerText.Trim()
-                   , @"\d+.\d+");
 
-                    PrintColor(ConsoleColor.Red, $"New price: {newPrice} Eur!");
-                    Console.ResetColor();
+                    Console.WriteLine(item.GetAttributeValue("col-xs-12 col-sm-7 col-md-6 right-column", ""));
+                    var oldPrice = Regex.Match(
+                          item.Descendants("div")
+                          .Where(node => node.GetAttributeValue("class", "")
+                          .Equals("row")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
+                      , @"\d+.\d+");
+
+
+                    Console.WriteLine($"Price: {oldPrice} Eur.");
+
+                    if (item.Descendants("span").Any(n => n.GetAttributeValue("class", "").Contains("price-new")))
+                    {
+                        var newPrice = Regex.Match(
+                       item.Descendants("span")
+                       .Where(node => node.GetAttributeValue("class", "")
+                       .Equals("price-new")).FirstOrDefault().InnerText.Trim()
+                       , @"\d+.\d+");
+
+                        PrintColor(ConsoleColor.Red, $"New price: {newPrice} Eur!");
+                        Console.ResetColor();
+                    }
+
                 }
 
+            }
+            else
+            {
+                Console.WriteLine("Is this car model from Paugeot salon! Please, check it and try again.");
             }
 
         }

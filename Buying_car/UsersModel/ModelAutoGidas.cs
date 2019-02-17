@@ -26,25 +26,34 @@ namespace Buying_car
            .Where(node => node.GetAttributeValue("class", "")
            .Contains("panel-left")).ToList();
 
-
-            foreach (var item in model)
+            if (htmlDocument.DocumentNode.Descendants("div").Any(n => n.GetAttributeValue("class", "").Contains("panel-left")))
             {
 
-                Console.WriteLine(item.Descendants("div")
-                      .Where(node => node.GetAttributeValue("class", "")
-                      .Equals("title-container")).FirstOrDefault().InnerText.Trim());
+                foreach (var item in model)
+                {
 
-                var price = Regex.Match(
-                   item.Descendants("span")
-                   .Where(node => node.GetAttributeValue("class", "")
-                   .Equals("data-value")).FirstOrDefault().InnerText.Trim()
-                   , @"\d+.\d+");
+                    Console.WriteLine(item.Descendants("div")
+                          .Where(node => node.GetAttributeValue("class", "")
+                          .Equals("title-container")).FirstOrDefault().InnerText.Trim());
 
-                Console.WriteLine($"Price: {price} Eur.");
+                    var price = Regex.Match(
+                       item.Descendants("span")
+                       .Where(node => node.GetAttributeValue("class", "")
+                       .Equals("data-value")).FirstOrDefault().InnerText.Trim()
+                       , @"\d+.\d+");
+
+                    Console.WriteLine($"Price: {price} Eur.");
 
 
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Is this car model from Paugeot salon! Please, check it and try again.");
 
             }
+
 
         }
 

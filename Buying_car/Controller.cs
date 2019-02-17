@@ -28,8 +28,8 @@ namespace Buying_car
         public void PrintUsersAnswers()
         {
 
-            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {autoGidas.Url}" +
-             $" \n 2) {SalonTypes.Peugeot_Salon} - {nissan.Url} \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
+            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas}" +
+             $" \n 2) {SalonTypes.Peugeot_Salon} \n 3) {SalonTypes.Toyota_Salon}");
 
             string userChoice = Console.ReadLine();
 
@@ -49,7 +49,7 @@ namespace Buying_car
                     userChoice = Console.ReadLine();
                 }
             }
-            
+
 
 
         }
@@ -111,10 +111,26 @@ namespace Buying_car
             while (_isAnswerIncorrect);
 
 
+            Console.WriteLine("\nPlease, enter a link of car model you have chosen:");
+            string userUrl = Console.ReadLine();
+            bool isincorrect = true;
 
+            while (isincorrect)
+            {
+                try
+                {
+                    GetModelInfo(userSalon, userUrl);
+                    isincorrect = false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    userUrl = Console.ReadLine();
 
+                }
+            }
 
-            GetModelInfo(userSalon);
+            //  GetModelInfo(userSalon);
 
         }
 
@@ -138,11 +154,10 @@ namespace Buying_car
 
 
 
-        private void GetModelInfo(string userChoice)
+        private void GetModelInfo(string userChoice, string userUrl)
         {
 
-            Console.WriteLine("\nPlease, enter a link of car model you have chosen:");
-            string userUrl = Console.ReadLine();
+
 
             bool isLinkUnvalid = true;
 
@@ -175,7 +190,7 @@ namespace Buying_car
 
             }
 
-            GetTrialDrivePrice(userChoice);
+          //  GetTrialDrivePrice(userChoice);
 
         }
 
