@@ -12,12 +12,12 @@ namespace Buying_car
     public class Controller
     {
         private AutoGidas autoGidas = new AutoGidas();
-        private NissanSalon nissan = new NissanSalon();
+        private PaugeotSalon nissan = new PaugeotSalon();
         private ToyotaSalon toyota = new ToyotaSalon();
         private Button btn = new Button();
         private CarFactory factory = new CarFactory();
         ModelAutoGidas userAutoGidas = new ModelAutoGidas();
-        ModelNissan userNissan = new ModelNissan();
+        ModelPaugeot userNissan = new ModelPaugeot();
         ModelToyota userToyota = new ModelToyota();
 
         private ShoppingCart service;
@@ -34,7 +34,7 @@ namespace Buying_car
         {
 
             Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {autoGidas.Url}," +
-                $" \n 2) {SalonTypes.Nissan_Salon} - {nissan.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
+                $" \n 2) {SalonTypes.Peugeot_Salon} - {nissan.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
             userChoice = Convert.ToInt32(Console.ReadLine());
             bool isInCorrect = true;
@@ -84,7 +84,7 @@ namespace Buying_car
                         btn.MessageEncoded += nissan.RichTextBox_LinkClicked;
                         btn.DoubleClick(nissan.Url);
 
-                        _car = factory.CreateCarShop(SalonTypes.Nissan_Salon);
+                        _car = factory.CreateCarShop(SalonTypes.Peugeot_Salon);
                         _car.Start();
 
                         _isAnswerIncorrect = false;
@@ -155,7 +155,7 @@ namespace Buying_car
                             Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10) })} Eur.");
                             break;
                         case 2:
-                            service = new ShoppingCart(new TrialDriveNissanSalon());
+                            service = new ShoppingCart(new TrialDrivePaugeotSalon());
                             userNissan.GetCurrentPriceAndModel(_userUrl);
                             Console.WriteLine($"Trial drive 1 h: {service.Order(new Order())} Eur.");
                             Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10) })} Eur.");

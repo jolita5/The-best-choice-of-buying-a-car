@@ -51,21 +51,21 @@
   <ItemGroup>
     <Compile Include="Controller.cs" />
     <Compile Include="Factory\Button.cs" />
-    <Compile Include="Factory\NissanSalon.cs" />
+    <Compile Include="Factory\PaugeotSalon.cs" />
     <Compile Include="Factory\LinkClickedEventArgs.cs" />
     <Compile Include="Factory\ToyotaSalon.cs" />
     <Compile Include="Factory\AutoGidas.cs" />
     <Compile Include="Factory\CarFactory.cs" />
     <Compile Include="ICar.cs" />
     <Compile Include="ITrialDriveCostStrategy.cs" />
-    <Compile Include="UsersModel\ModelNissan.cs" />
+    <Compile Include="UsersModel\ModelPaugeot.cs" />
     <Compile Include="UsersModel\ModelAutoGidas.cs" />
     <Compile Include="Strategy\Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalonTypes.cs" />
     <Compile Include="Strategy\ShoppingCart.cs" />
-    <Compile Include="Strategy\TrialDriveNissanSalon.cs" />
+    <Compile Include="Strategy\TrialDrivePaugeotSalon.cs" />
     <Compile Include="Strategy\TrialDriveToyotaSalon.cs" />
     <Compile Include="Strategy\TrialDriveAutoGidas.cs" />
     <Compile Include="UsersModel\ModelToyota.cs" />

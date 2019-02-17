@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class TrialDriveNissanSalon: ITrialDriveCostStrategy
+    public class TrialDrivePaugeotSalon: ITrialDriveCostStrategy
     {
 
         public decimal Calculate(Order order)

@@ -16,7 +16,12 @@ namespace Buying_car
             int userChoice = 0;
             Controller user = new Controller();
 
-            user.PrintUsersAnswer(userChoice);
+            //  user.PrintUsersAnswer(userChoice);
+            Console.WriteLine("Enter the link of car model you have chosen:");
+            string userUrl = Console.ReadLine();
+
+            ModelPaugeot userNissan = new ModelPaugeot();
+            userNissan.GetCurrentPriceAndModel(userUrl);
 
 
             Console.ReadLine();

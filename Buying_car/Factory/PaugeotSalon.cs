@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class NissanSalon : ICar
+    public class PaugeotSalon : ICar
     {
-        public string Url { get; private set; } = "https://www.nissan.lt/automobiliai/nauji-automobiliai.html";
+        public string Url { get; private set; } = "https://www.peugeotlietuva.lt/modeliu-gama/peugeot-automobiliai.html?utm_source=google&utm_medium=cpc&utm_campaign=lt_brand&utm_content=lt_brand&utm_term=lt_brand_lt03";
 
 
 
@@ -47,7 +47,7 @@ namespace Buying_car
         public void Start()
         {
 
-            Console.WriteLine($"\n{SalonTypes.Nissan_Salon} was chosen.");
+            Console.WriteLine($"\n{SalonTypes.Peugeot_Salon} was chosen.");
         }
 
 

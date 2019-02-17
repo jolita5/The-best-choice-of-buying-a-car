@@ -15,8 +15,8 @@ namespace Buying_car.Factory
             {
                 case SalonTypes.AutoGidas:
                    return new AutoGidas();
-                case SalonTypes.Nissan_Salon:
-                   return new NissanSalon();
+                case SalonTypes.Peugeot_Salon:
+                   return new PaugeotSalon();
                 case SalonTypes.Toyota_Salon:
                     return new ToyotaSalon();
                 default:

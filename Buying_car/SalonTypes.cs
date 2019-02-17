@@ -9,7 +9,7 @@ namespace Buying_car
     public enum SalonTypes
     {
         AutoGidas,
-        Nissan_Salon,
+        Peugeot_Salon,
         Toyota_Salon
        
     }
