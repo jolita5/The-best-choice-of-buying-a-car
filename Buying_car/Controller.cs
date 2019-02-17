@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Buying_car
@@ -190,14 +191,15 @@ namespace Buying_car
 
             }
 
-          //  GetTrialDrivePrice(userChoice);
-
+            GetTrialDrivePrice(userChoice);
+            
         }
 
 
 
         private void GetTrialDrivePrice(string userChoice)
         {
+            Thread.Sleep(3000);
             Console.WriteLine("\nWould you like to take a trial drive? Please, enter 'yes' or 'no'?");
             string answer = Console.ReadLine();
 
@@ -213,21 +215,21 @@ namespace Buying_car
                         case "1":
                             _service = new ShoppingCart(new TrialDriveAutoGidas());
                             Console.WriteLine($"Trial drive price: {_service.Order(new Order())} Eur.");
-                            PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order())} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
+                            PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order()) * 100} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
                             Console.ResetColor();
                             isIncorrect = false;
                             break;
                         case "2":
                             _service = new ShoppingCart(new TrialDrivePaugeotSalon());
                             Console.WriteLine($"Trial drive price: {_service.Order(new Order())} Eur.");
-                            PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order())} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
+                            PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order()) * 100} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
                             Console.ResetColor();
                             isIncorrect = false;
                             break;
                         case "3":
                             _service = new ShoppingCart(new TrialDriveToyotaSalon());
                             Console.WriteLine($"Trial drive price: {_service.Order(new Order())} Eur.");
-                            PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order())} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
+                            PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order()) * 100} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
                             Console.ResetColor();
                             isIncorrect = false;
                             break;
@@ -247,6 +249,9 @@ namespace Buying_car
                 }
 
             }
+
+
+            Console.WriteLine("\nThank you and have a nice day!");
 
 
         }

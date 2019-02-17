@@ -34,7 +34,7 @@ namespace Buying_car.Links
 
                 foreach (var item in model)
                 {
-                    if (!item.Descendants("span").Any(n => n.GetAttributeValue("itemprop", "").Contains("lowPrice")))
+                    if (item.Descendants("span").Any(n => n.GetAttributeValue("itemprop", "").Contains("lowPrice")))
                     {
 
                         var price = Regex.Match(
