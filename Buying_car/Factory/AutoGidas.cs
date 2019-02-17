@@ -29,7 +29,7 @@ namespace Buying_car
             if (MakeUrlActive(url))
             {
                 Process.Start(url);
-            } 
+            }
         }
 
         public bool MakeUrlActive(string url)

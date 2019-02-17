@@ -32,11 +32,11 @@ namespace Buying_car.Links
             foreach (var item in model)
             {
 
-               
+
                 var price = Regex.Match(
                       item.Descendants("span")
                       .Where(node => node.GetAttributeValue("itemprop", "")
-                      .Equals("lowPrice")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
+                      .Equals("lowPrice")).FirstOrDefault().InnerText.Trim()
                   , @"\d+.\d+");
 
                 Console.WriteLine($"Price: {nuo.InnerHtml} {price} Eur.");

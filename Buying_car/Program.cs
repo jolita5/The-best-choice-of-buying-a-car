@@ -13,21 +13,17 @@ namespace Buying_car
 
         static void Main(string[] args)
         {
-            int userChoice = 0;
+
             Controller user = new Controller();
 
-            user.PrintUsersAnswer(userChoice);
-        
+            user.PrintUsersAnswers();
+
 
 
             Console.ReadLine();
 
 
-
-
         }
-
-
 
     }
 }

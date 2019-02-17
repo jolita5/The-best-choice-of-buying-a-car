@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Buying_car
 {
-    public class TrialDrivePaugeotSalon: ITrialDriveCostStrategy
+    public class TrialDrivePaugeotSalon : ITrialDriveCostStrategy
     {
 
         public float Calculate(Order order)
@@ -16,7 +16,7 @@ namespace Buying_car
 
         public float Discount(Order discount)
         {
-            return (float)20/100;
+            return (float)20 / 100;
         }
     }
 }

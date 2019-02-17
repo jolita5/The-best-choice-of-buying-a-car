@@ -50,7 +50,7 @@ namespace Buying_car
                     var newPrice = Regex.Match(
                    item.Descendants("span")
                    .Where(node => node.GetAttributeValue("class", "")
-                   .Equals("price-new")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
+                   .Equals("price-new")).FirstOrDefault().InnerText.Trim()
                    , @"\d+.\d+");
 
                     PrintColor(ConsoleColor.Red, $"New price: {newPrice} Eur!");

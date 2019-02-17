@@ -32,12 +32,12 @@ namespace Buying_car
 
                 Console.WriteLine(item.Descendants("div")
                       .Where(node => node.GetAttributeValue("class", "")
-                      .Equals("title-container")).FirstOrDefault().InnerText.Trim('\r', '\n', 't'));
+                      .Equals("title-container")).FirstOrDefault().InnerText.Trim());
 
                 var price = Regex.Match(
                    item.Descendants("span")
                    .Where(node => node.GetAttributeValue("class", "")
-                   .Equals("data-value")).FirstOrDefault().InnerText.Trim('\r', '\n', 't')
+                   .Equals("data-value")).FirstOrDefault().InnerText.Trim()
                    , @"\d+.\d+");
 
                 Console.WriteLine($"Price: {price} Eur.");
