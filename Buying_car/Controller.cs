@@ -27,91 +27,46 @@ namespace Buying_car
 
         public void PrintUsersAnswers()
         {
+
             Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {autoGidas.Url}" +
              $" \n 2) {SalonTypes.Peugeot_Salon} - {nissan.Url} \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
-            int userChoice = Convert.ToInt32(Console.ReadLine());
+            string userChoice = Console.ReadLine();
 
-            bool isInCorrect = true;
 
-            while (isInCorrect)
+            bool check = true;
+
+            while(check)
             {
                 try
                 {
                     GetUsersChoisenSalon(userChoice);
-                    isInCorrect = false;
+                    check = false;
                 }
                 catch (Exception ex)
                 {
-                    userChoice = Convert.ToInt32(Console.ReadLine());
-
                     Console.WriteLine(ex.Message);
-
+                    userChoice = Console.ReadLine();
                 }
-
-
             }
-
-            Console.WriteLine("\nPlease, enter a link of car model you have chosen:");
-            string userUrl = Console.ReadLine();
-
-            while (isInCorrect)
-            {
-                try
-                {
-                    GetModelInfo(userChoice, userUrl);
-                    isInCorrect = false;
-                }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(ex.Message);
-                    userUrl = Console.ReadLine();
-
-                }
-
-
-            }
-
-            Console.WriteLine("\nWould you like to take a trial drive? Please, enter 'yes' or 'no'?");
-            string answer = Console.ReadLine();
-
-
-            while (isInCorrect)
-            {
-                try
-                {
-                    GetTrialDrivePrice(userChoice, answer);
-                    isInCorrect = false;
-                }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(ex.Message);
-                    answer = Console.ReadLine();
-
-                }
-
-
-            }
-
-            Console.WriteLine("Have a nice day!");
+            
 
 
         }
 
 
 
-        private void GetUsersChoisenSalon(int userSalon)
+        private void GetUsersChoisenSalon(string userSalon)
         {
             bool _isAnswerIncorrect = true;
+            int nr = 0;
 
             do
             {
 
                 switch (userSalon)
                 {
-                    case 1:
+                    case "1":
                         btn.MessageEncoded += autoGidas.RichTextBox_LinkClicked;
                         btn.DoubleClick(autoGidas.Url);
 
@@ -120,7 +75,7 @@ namespace Buying_car
 
                         _isAnswerIncorrect = false;
                         break;
-                    case 2:
+                    case "2":
                         btn.MessageEncoded += nissan.RichTextBox_LinkClicked;
                         btn.DoubleClick(nissan.Url);
 
@@ -129,7 +84,7 @@ namespace Buying_car
 
                         _isAnswerIncorrect = false;
                         break;
-                    case 3:
+                    case "3":
                         btn.MessageEncoded += toyota.RichTextBox_LinkClicked;
                         btn.DoubleClick(toyota.Url);
 
@@ -139,13 +94,27 @@ namespace Buying_car
                         _isAnswerIncorrect = false;
                         break;
                     default:
+
+                        if (!Int32.TryParse(userSalon, out nr))
+                        {
+                            throw new Exception("Input is incorrect format! Please, enter a number: 1, 2 or 3.");
+                        }
+
                         Console.WriteLine("This choice doesn't exist! Please, try again!");
-                        userSalon = Convert.ToInt32(Console.ReadLine());
+                        userSalon = Console.ReadLine();
                         break;
                 }
 
+
+
             }
             while (_isAnswerIncorrect);
+
+
+
+
+
+            GetModelInfo(userSalon);
 
         }
 
@@ -169,9 +138,11 @@ namespace Buying_car
 
 
 
-        private void GetModelInfo(int userChoice, string userUrl)
+        private void GetModelInfo(string userChoice)
         {
 
+            Console.WriteLine("\nPlease, enter a link of car model you have chosen:");
+            string userUrl = Console.ReadLine();
 
             bool isLinkUnvalid = true;
 
@@ -181,15 +152,15 @@ namespace Buying_car
                 {
                     switch (userChoice)
                     {
-                        case 1:
+                        case "1":
                             userAutoGidas.GetCurrentPriceAndModel(userUrl);
                             isLinkUnvalid = false;
                             break;
-                        case 2:
+                        case "2":
                             userPaugeot.GetCurrentPriceAndModel(userUrl);
                             isLinkUnvalid = false;
                             break;
-                        case 3:
+                        case "3":
                             userToyota.GetCurrentPriceAndModel(userUrl);
                             isLinkUnvalid = false;
                             break;
@@ -204,42 +175,46 @@ namespace Buying_car
 
             }
 
+            GetTrialDrivePrice(userChoice);
+
         }
 
 
 
-        private void GetTrialDrivePrice(int userChoice, string answer)
+        private void GetTrialDrivePrice(string userChoice)
         {
+            Console.WriteLine("\nWould you like to take a trial drive? Please, enter 'yes' or 'no'?");
+            string answer = Console.ReadLine();
 
-            bool isLinkUnvalid = true;
+            bool isIncorrect = true;
 
 
-            while (isLinkUnvalid)
+            while (isIncorrect)
             {
                 if (answer == "yes")
                 {
                     switch (userChoice)
                     {
-                        case 1:
+                        case "1":
                             _service = new ShoppingCart(new TrialDriveAutoGidas());
                             Console.WriteLine($"Trial drive price: {_service.Order(new Order())} Eur.");
                             PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order())} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
                             Console.ResetColor();
-                            isLinkUnvalid = false;
+                            isIncorrect = false;
                             break;
-                        case 2:
+                        case "2":
                             _service = new ShoppingCart(new TrialDrivePaugeotSalon());
                             Console.WriteLine($"Trial drive price: {_service.Order(new Order())} Eur.");
                             PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order())} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
                             Console.ResetColor();
-                            isLinkUnvalid = false;
+                            isIncorrect = false;
                             break;
-                        case 3:
+                        case "3":
                             _service = new ShoppingCart(new TrialDriveToyotaSalon());
                             Console.WriteLine($"Trial drive price: {_service.Order(new Order())} Eur.");
                             PrintColor(ConsoleColor.Red, $"Trial drive price with {_service.Discount(new Order())} % discount: { _service.AddPrice(new Order() { TotalPriceTrialDrive = _service.Order(new Order()) })} Eur.");
                             Console.ResetColor();
-                            isLinkUnvalid = false;
+                            isIncorrect = false;
                             break;
 
                     }
@@ -247,7 +222,7 @@ namespace Buying_car
                 else if (answer == "no")
                 {
                     Console.WriteLine("No trial Drive!");
-                    isLinkUnvalid = false;
+                    isIncorrect = false;
 
                 }
                 else
