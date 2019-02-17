@@ -9,10 +9,15 @@ namespace Buying_car
     public class TrialDriveToyotaSalon: ITrialDriveCostStrategy
     {
 
-        public decimal Calculate(Order order)
+        public float Calculate(Order order)
         {
            
-            return 50;
+            return 50f;
+        }
+
+        public float Discount(Order discount)
+        {
+            return (float)5/100;
         }
     }
 }

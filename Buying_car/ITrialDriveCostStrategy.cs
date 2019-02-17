@@ -8,6 +8,7 @@ namespace Buying_car
 {
     public interface ITrialDriveCostStrategy
     {
-        decimal Calculate(Order order);
+        float Calculate(Order order);
+        float Discount(Order discount);
     }
 }

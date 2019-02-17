@@ -16,16 +16,13 @@ namespace Buying_car
         private ToyotaSalon toyota = new ToyotaSalon();
         private Button btn = new Button();
         private CarFactory factory = new CarFactory();
-        ModelAutoGidas userAutoGidas = new ModelAutoGidas();
-        ModelPaugeot userNissan = new ModelPaugeot();
-        ModelToyota userToyota = new ModelToyota();
-
+        private ModelAutoGidas userAutoGidas = new ModelAutoGidas();
+        private ModelPaugeot userNissan = new ModelPaugeot();
+        private ModelToyota userToyota = new ModelToyota();
         private ShoppingCart service;
         private ICar _car;
         private bool _isAnswerIncorrect = true;
         private string _userUrl;
-        private decimal _hours;
-
 
 
 
@@ -33,8 +30,8 @@ namespace Buying_car
         public void PrintUsersAnswer(int userChoice)
         {
 
-            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {autoGidas.Url}," +
-                $" \n 2) {SalonTypes.Peugeot_Salon} - {nissan.Url} , \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
+            Console.WriteLine($"Please, choose one salon to open a website: \n 1) {SalonTypes.AutoGidas} - {autoGidas.Url}" +
+                $" \n 2) {SalonTypes.Peugeot_Salon} - {nissan.Url} \n 3) {SalonTypes.Toyota_Salon} - {toyota.Url}");
 
             userChoice = Convert.ToInt32(Console.ReadLine());
             bool isInCorrect = true;
@@ -44,17 +41,31 @@ namespace Buying_car
                 try
                 {
                     GetUsersChoisenSalon(userChoice);
-                    GetTotalPrise(userChoice);
                     isInCorrect = false;
                 }
                 catch (Exception ex)
                 {
-
-                    Console.WriteLine(ex.Message);
                     userChoice = Convert.ToInt32(Console.ReadLine());
 
+                    Console.WriteLine(ex.Message);
+
                 }
+
+
             }
+
+
+            try
+            {
+                GetTotalPrise(userChoice);
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
 
 
         }
@@ -63,8 +74,6 @@ namespace Buying_car
 
         private void GetUsersChoisenSalon(int userSalon)
         {
-
-
 
             do
             {
@@ -132,16 +141,17 @@ namespace Buying_car
         private void GetTotalPrise(int userChoice)
         {
 
-            Console.WriteLine("Enter the link of car model you have chosen:");
+            Console.WriteLine("Please, enter a link of car model you have chosen:");
             _userUrl = Console.ReadLine();
-            Console.WriteLine("How many hours would you like to take for the trial drive?");
-            _hours = Convert.ToDecimal(Console.ReadLine());
 
-            bool check = true;
+            Console.WriteLine("\n Would you like to take a trial drive? Please, enter 'yes' or 'no'?");
+            string answer = Console.ReadLine();
+
+            bool isLinkUnvalid = true;
 
             Console.WriteLine();
 
-            while(check)
+            while (isLinkUnvalid)
             {
                 if (IsValidURL(_userUrl) == true)
                 {
@@ -150,23 +160,23 @@ namespace Buying_car
                         case 1:
                             service = new ShoppingCart(new TrialDriveAutoGidas());
                             userAutoGidas.GetCurrentPriceAndModel(_userUrl);
-                            Console.WriteLine($"Trial drive 1 h: {service.Order(new Order())} Eur.");
-                            check = false;
-                            Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10) })} Eur.");
+                            Console.WriteLine($"Trial drive price: {service.Order(new Order())} Eur.");
+                            Console.WriteLine($"Trial drive price with {service.Discount(new Order())} % discount: { CalculateTrialDrivePrice(answer)} Eur.");
+                            isLinkUnvalid = false;
                             break;
                         case 2:
                             service = new ShoppingCart(new TrialDrivePaugeotSalon());
                             userNissan.GetCurrentPriceAndModel(_userUrl);
-                            Console.WriteLine($"Trial drive 1 h: {service.Order(new Order())} Eur.");
-                            Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10) })} Eur.");
-                            check = false;
+                            Console.WriteLine($"Trial drive price: {service.Order(new Order())} Eur.");
+                            Console.WriteLine($"Trial drive price with {service.Discount(new Order())} % discount: { CalculateTrialDrivePrice(answer)} Eur.");
+                            isLinkUnvalid = false;
                             break;
                         case 3:
                             service = new ShoppingCart(new TrialDriveToyotaSalon());
                             userToyota.GetCurrentPriceAndModel(_userUrl);
-                            Console.WriteLine($"Trial drive 1 h: {service.Order(new Order())} Eur.");
-                            Console.WriteLine($"Trial drive {_hours} h: {service.AddPrice(new Order() { Hour = (_hours * service.Order(new Order())/10)}) } Eur.");
-                            check = false;
+                            Console.WriteLine($"Trial drive price: {service.Order(new Order())} Eur.");
+                            Console.WriteLine($"Trial drive price with {service.Discount(new Order())} % discount: { CalculateTrialDrivePrice(answer)} Eur.");
+                            isLinkUnvalid = false;
                             break;
 
                     }
@@ -179,16 +189,27 @@ namespace Buying_car
 
             }
 
-
-
-
-
-
-
         }
 
+        private float CalculateTrialDrivePrice(string answer)
+        {
 
+            switch (answer)
+            {
 
+                case "yes":
+                    return service.AddPrice(new Order() {TotalPriceTrialDrive = service.Order(new Order()) });
+                case "no":
+                    return 0;
+                default:
+                    Console.WriteLine("Please, enter 'yes' or 'no'!");
+                    answer = Console.ReadLine();
+                    break;
+
+            }
+            return 0;
+
+        }
 
     }
 }

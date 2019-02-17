@@ -17,15 +17,27 @@ namespace Buying_car
         }
 
 
-        public decimal AddPrice(Order order)
+        public float AddPrice(Order order)
         {
-            return order.Hour += _trialDriveStrategy.Calculate(order);
+            return order.TotalPriceTrialDrive - DiscountEur(order);
         }
 
 
-        public decimal Order(Order order)
+        public float DiscountEur(Order order)
+        {
+            return order.TotalPriceTrialDrive *= _trialDriveStrategy.Discount(order);
+        }
+
+
+        public float Order(Order order)
         {
             return _trialDriveStrategy.Calculate(order);
         }
+
+        public float Discount(Order order)
+        {
+            return _trialDriveStrategy.Discount(order);
+        }
+
     }
 }

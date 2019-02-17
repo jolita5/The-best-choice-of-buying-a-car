@@ -9,9 +9,14 @@ namespace Buying_car
     public class TrialDriveAutoGidas: ITrialDriveCostStrategy
     {
 
-        public decimal Calculate(Order order)
+        public float Calculate(Order order)
         {
-           return 100;
+           return 100f;
+        }
+
+        public float Discount(Order discount)
+        {
+            return (float)15/100;
         }
     }
 }

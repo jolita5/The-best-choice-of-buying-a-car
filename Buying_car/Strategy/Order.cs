@@ -8,7 +8,6 @@ namespace Buying_car
 {
     public class Order
     {
-        public decimal Hour { get; internal set; }
-
+        public float TotalPriceTrialDrive { get; internal set; }
     }
 }
